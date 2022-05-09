@@ -1,0 +1,111 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth; /* khi bấm vào nhưng nút trên header thì sẽ lăn trang đến vị trí đó */
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    background-color: #cccccc;
+}
+
+.container {
+    display: flex;
+    width: 1200px;
+    background-color: #eaeaea;
+    height: 700px;
+    margin: 0 auto 24px;
+    border: 2px solid #2700ff;
+}
+
+.image{
+    display: grid;
+    margin: 0 16px;
+}
+
+.img-large{
+    width:450px;
+    height:450px;
+}
+
+.img-small{
+    width:84px;
+    height:84px;
+    border: 1px solid #bd0303;
+}
+
+.name-product{
+    font-size: 24px;
+    font-weight: 600;
+    color:black;
+}
+
+.price{
+    display: flex;
+    font-size: 30px;
+    font-weight: 600;
+    color: #f00c;
+    margin:16px;
+}
+
+.name-price{
+    color: #999c !important;
+    font-size:28px;
+    margin-right : 16px; 
+    font-weight:300;
+}
+
+.description{
+    display: flex;
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+.infor{
+    margin-right: 94px;
+    font-size: 16px;
+    color: #807f7fcc;
+}
+
+.content-description{
+    font-size: 16px;
+    font-weight:300;
+    color: #383838 !important;
+}
+
+.amount{
+    font-size: 20px;
+    font-weight: 500;
+    color:black;
+}
+
+.infor-cate{
+    margin-top: 1.5px;
+}
+
+.name-cate{
+    font-size: 20px;
+    font-weight: 700;
+    color:black;
+}
+
+.controll{
+    margin-top:48px;
+    margin-left: 120px;
+}
+
+.link-edit:hover{
+    cursor: pointer;
+    text-decoration:none;
+}
+
+.link-edit{
+    text-decoration: none;
+    padding: 13px 30px;
+    background-color: #6574dd;
+    font-size: 20px;
+    color: #fff;
+    margin-right: 12px;
+}

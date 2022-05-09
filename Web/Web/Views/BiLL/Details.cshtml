@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Web.Models.Entity.billDetail>
+
+@{
+    ViewBag.Title = "Detials";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2> Chi Tiết mã Đơn Hàng @Session["Mã Đơn Hàng"]</h2>
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">Name </th>
+            <th class="text-left">Amount</th>
+            <th class="text-left">Total</th>
+
+        </tr>
+
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.Product.nameProduct)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.total) vnđ
+                </td>
+            </tr>
+
+        </tbody>
+    }
+        <tr>
+            <td colspan="3" style="text-align:right;">
+                Sum : @Session["Tổng Bill"] vnđ
+            </td>
+        </tr>
+</table>
+<div style=" margin: 72px 402px;">
+    <a href="@Url.Action("Index","BiLL")" class="link-edit-customer"
+       style="        background-color: white;
+        color: #4b2dee;
+        border: 2px solid #5916db;
+        font-size: 20px;
+        padding: 24px;
+">Back</a>
+    <a href="@Url.Action("agree","BiLL", new { id = Session["Mã Đơn Hàng"]})" class="link-edit-customer"
+       style="        background-color: #0f00f4;
+        color: #ffffff;
+        border: 2px solid #2d33ee;
+        font-size: 20px;
+        padding: 24px;
+">Xác Nhận Đơn Hàng</a>
+
+</div>

@@ -1,0 +1,61 @@
+﻿@model Web.Models.Entity.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="container">
+    <div class="image">
+        <img src="~/Access/Imge/@Model.photo" class="img-large" alt="">
+        <img src="~/Access/Imge/@Model.photo" class="img-small" alt="">
+    </div>
+    <div class="content">
+        <div class="name-product">
+            @Html.DisplayFor(model => model.nameProduct)
+        </div>
+        <div class="price">
+            <p class="name-price">Giá:</p>
+            @Html.DisplayFor(model => model.price)
+        </div>
+        <div class="description">
+            <p class="infor"> Thông Tin:</p>
+            <p class="content-description"> @Html.DisplayFor(model => model.description)</p>
+        </div>
+        <div class="description">
+            <p class="infor"> Số Lượng:</p>
+            <p class="amount">@Html.DisplayFor(model => model.amuont) Sản Phẩm</p>
+        </div>
+        <div class="description">
+            <p class="infor infor-cate"> Danh Mục:</p>
+            <p class="name-cate">@Html.DisplayFor(model => model.category.nameCategory)</p>
+        </div>
+        <div class="controll">
+                @*<a href="@Url.Action("Edit","Admin" ,new { id = Model.idProduct})" class="link-edit">Edit</a>
+                <a href="@Url.Action("Index","Admin")" class="link-edit">Back</a>*@
+                   @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="link-edit" />
+                <a href="@Url.Action("Index","Admin")" class="link-edit">Back</a>
+            </div>
+        }
+            </div>
+
+
+    </div>
+@*</div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>*@

@@ -1,0 +1,108 @@
+﻿@model Web.Models.Dao.Cart
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+<link href="~/Access/Admin/stytle.css" rel="stylesheet" />
+<table class="table-fill">
+    @if (Model != null)
+    {
+
+        <thead>
+            <tr>
+                <th class="text-left" style="color: #ffffff; background: #ee4d2d;">Name </th>
+                <th class="text-left" style="color: #ffffff; background: #ee4d2d;">Photo</th>
+                <th class="text-left" style="color: #ffffff; background: #ee4d2d;">Price</th>
+                <th class="text-left" style="color: #ffffff; background: #ee4d2d;">Amount</th>
+                <th class="text-left" style="color: #ffffff; background: #ee4d2d;"> Sum </th>
+                <th class="text-left" style="color: #ffffff; background: #ee4d2d;"></th>
+            </tr>
+
+        </thead>
+
+        <tbody class="table-hover">
+            @foreach (var item in Model.ITEMS)
+            {
+                var total = item.product.price * item.soluong;
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => item.product.nameProduct)
+                    </td>
+                    <td>
+                        <img src="~/Access/Imge/@item.product.photo" style=" width: 100px;height:100px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.product.price)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Update_soluong", "ShoppingCart"))
+                        {
+                            <input type="hidden" value="@item.product.idProduct" name="idProduct" />
+                            <input type="number" value="@item.soluong" min="1" name="soluong" style="width:48px;"/>
+                            <input type="submit" value="update" />
+                        }
+                        @*@Html.DisplayFor(model => item.soluong)*@
+                    </td>
+                    <td>
+                        Total: @total
+                    </td>
+                    <td>
+                        <a href="@Url.Action("RemoveCart","ShoppingCart",new { id = item.product.idProduct})">Xóa</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody><tfoot>
+            <tr>
+                @using (Html.BeginForm("Checkout", "ShoppingCart"))
+                { 
+                <td colspan="6">
+                    <table>
+                        <tr>
+                            <td>
+                                Số Điện THoại Người Nhận
+                            </td>
+                            <td>
+                                <input type="text" name="Phone" placeholder="Số Điện Thoại" required />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Địa Chỉ Giao Hàng
+                            </td>
+                            <td>
+                                <input type="text" name="Address" placeholder="Địa Chỉ " required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <input type="submit" name="CheckOut" value="Check Out" />
+                                <a href="@Url.Action("Payment","Payment",new {total = Model.tota_bill() })">Thanh toán</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td> 
+                
+                }
+            </tr>
+            <tr >
+                <td colspan="5" style="text-align:right;">
+                    Sum total: @Model.tota_bill()
+                </td>
+                
+            </tr>
+        </tfoot>
+    }
+</table>
+
+<a href="@Url.Action("Index","Customer")" class="link-edit-customer" 
+     style="  
+        background-color: white;
+        color: #ee4d2d;
+        border: 2px solid #ee4d2d;
+        margin: 12px auto;
+">Continue Buy</a>
+
+

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Web.Models.Entity.category>
+
+@foreach (var item in Model) {
+<li class="category-item">
+    <a href="@Url.Action("SearchBycate","Customer",new { id = item.idCategory})" class="category-link" >
+        @item.nameCategory
+    </a>
+</li>
+}
+
+

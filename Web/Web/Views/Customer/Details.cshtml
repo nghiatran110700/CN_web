@@ -1,0 +1,41 @@
+﻿@model Web.Models.Entity.Product
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<div class="container-customer" style=" height:600px">
+    <div class="image">
+        <img src="~/Access/Imge/@Model.photo" class="img-large-customer" alt="">
+    </div>
+    <div class="content-customer">
+        <div class="name-product-customer">
+            @Html.DisplayFor(model => model.nameProduct)
+        </div>
+        <div class="price-customer" style="margin-top:40px;">
+            <p class="name-price-customer" style="margin-right:80px;">Giá:</p>
+            
+            @Html.DisplayFor(model => model.price)đ
+        </div>
+        <div class="description-customer">
+            <p class="infor-customer"> Thông Tin:</p>
+            <p class="content-description-customer" style=" text-align: justify; margin-right: 16px; font-size:15px;"> @Html.DisplayFor(model => model.description)</p>
+        </div>
+        <div class="description-customer">
+            <p class="infor-customer"> Số Lượng:</p>
+            <p class="amount-customer">@Html.DisplayFor(model => model.amuont) Sản Phẩm</p>
+        </div>
+        <div class="description-customer">
+            <p class="infor infor-cate-customer" style=" color: #9f9d9d;"> Danh Mục:</p>
+            <p class="name-cate-customer">@Html.DisplayFor(model => model.category.nameCategory)</p>
+        </div>
+        
+        <div class="controll-customer">
+            <a href="@Url.Action("AddToCart","ShoppingCart" ,new { id = Model.idProduct})" class="link-edit-customer" style="background-color:#ee4d2d;color:white;">Add Cart</a>
+            @*<a href="@Url.Action("")" class="cart-view btn btn--primary">Xem Giỏ Hàng</a>*@
+            <a href="@Url.Action("Index","Customer")" class="link-edit-customer" style="        background-color: white; color: #ee4d2d; border:2px solid #ee4d2d">Back</a>
+        </div>
+
+
+    </div>
+</div>

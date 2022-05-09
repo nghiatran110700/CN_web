@@ -1,0 +1,82 @@
+﻿@model PagedList.IPagedList<Web.Models.DTO.ProductDTO>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCustomer.cshtml";
+}
+
+<style>
+    .pagination {
+        margin: 24px auto;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 12px 18px;
+            text-decoration: none;
+        }
+
+        .pagination li {
+            background-color: #e9e9e9;
+            border-radius: 5px;
+            margin-left: 4px;
+        }
+
+        .pagination .active {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+            border-radius: 5px;
+        }
+</style>
+
+@foreach (var item in Model)
+{
+    <div class="col l-2-4">
+        <a href="@Url.Action("Details","Customer",new { id = item.idProduct})" class="home-link-product">
+            <div class="home-product-item">
+                <div class="home-product-item__img " style="background-image: url(../Access/Imge/@item.photo);">
+                    
+                </div>
+                <h4 class="home-product-item__name">@item.nameProduct</h4>
+                <div class="home-product-item__price">
+                    <span class="home-product-item__old" style="text-decoration:none;">Giá:</span>
+                    <span class="home-product-item__curent">@item.price đ</span>
+                </div>
+                <div class="home-product-item__action">
+                    <span class="home-product-item__like item__like--liked">
+                        <i class="item__like--empty far fa-heart"></i>
+                        <i class="item__like--fill fas fa-heart"></i>
+                    </span>
+                    <div class="home-product-item__rating">
+
+                        <i class="start--gold fas fa-star"></i>
+                        <i class="start--gold fas fa-star"></i>
+                        <i class="start--gold fas fa-star"></i>
+                        <i class="start--gold fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="home-product-item__slod">@item.amuont sản phẩm</span>
+                </div>
+                <div class="home-product-item__origin">
+                    <span class="home-product-item__brand">Danh Mục</span>
+                    <span class="home-product-item__origin-name">@item.nameCategory</span>
+                </div>
+
+                <div class="home-product-item__favourite">
+                    <i class="fas fa-check"></i>
+                    <span> Yêu thích</span>
+                </div>
+            </div>
+        </a>
+    </div>
+}
+<ul class="pagination">
+    @Html.PagedListPager(Model, pageNum => Url.Action("Index", "Customer", new { pageNum }))
+</ul>

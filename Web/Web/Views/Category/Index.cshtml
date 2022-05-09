@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Web.Models.Entity.category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Manager Category</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table-fill" style="max-width:900px; width:70%;">
+    <thead>
+        <tr>
+            <th class="text-left">id</th>
+            <th class="text-left">Name </th>
+            <th class="text-left">
+
+            </th>
+        </tr>
+
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.idCategory)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.nameCategory)
+                </td>
+                
+                <td class="text-left" style="width:98px;">
+                    <div class="filter__page-control">
+                        <a href="@Url.Action("Edit", "Category", new { id = item.idCategory })" class="filter__page-btn " style="text-decoration:none;">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class="page-icon fas fa-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Category", new { id = item.idCategory })" class="filter__page-btn " style="text-decoration:none;">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class="page-icon fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                   
+                </td>
+            </tr>
+
+        </tbody>
+    }
+</table>

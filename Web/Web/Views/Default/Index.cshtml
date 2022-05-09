@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<Web.Models.DTO.ProductDTO>
+@using PagedList.Mvc
+@using PagedList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Manager Product</h2>
+@*<div class="form-search">
+        @using (Html.BeginForm("Index", "Default", FormMethod.Get, new { }))
+        {
+        <p>
+            Search: @Html.TextBox("keyword")
+            @Html.TextBox("minPrice")
+            @Html.TextBox("maxPrice")
+            <input type="submit" value="Find" />
+                <a href="~/Default/Index" class="btn btn-default btn-pro" title="Reload" style="background-color: antiquewhite; width: 70px; height: 30px">
+                    <i class="fas fa-sync-alt"></i>
+                </a>
+
+        </p>
+        }
+
+    </div>*@
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">Name </th>
+            <th class="text-left">Price</th>
+            <th class="text-left">Amount</th>
+            <th class="text-left">Photo</th>
+            <th class="text-left">Description</th>
+            <th class="text-left">Category</th>
+            <th class="text-left">
+
+            </th>
+        </tr>
+
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.nameProduct)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.amuont)
+                </td>
+                <td class="text-left">
+                    <img src="~/Access/Imge/@item.photo" style="width:70px; height:70px;" />
+                </td>
+                <td class="text-left ">
+                    <h4 class="text-descriptoin">
+                        @Html.DisplayFor(modelItem => item.description)
+                    </h4>
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.nameCategory)
+                </td>
+                <td class="text-left">
+                    <div class="filter__page-control">
+                        <a href="@Url.Action("Edit", "Default", new { id = item.idProduct })" class="filter__page-btn ">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class="page-icon fas fa-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Details", "Default", new { id = item.idProduct })" class="filter__page-btn ">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class=" page-icon fas fa-info-circle"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Default", new { id = item.idProduct })" class="filter__page-btn ">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class="page-icon fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.idProduct }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.idProduct }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.idProduct })*@
+                </td>
+            </tr>
+
+        </tbody>
+    }
+</table>
+<ul class="pagination">
+        @Html.PagedListPager(Model, pageNum => Url.Action("Index", "Default", new { pageNum}))
+</ul>

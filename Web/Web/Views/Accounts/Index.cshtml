@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Web.Models.Entity.Account>
+
+@{
+    ViewBag.Title = "Accounts";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">Email </th>
+            <th class="text-left">Password</th>
+            <th class="text-left">Full Name</th>
+            <th class="text-left">Quyền</th>
+            <th class="text-left">
+
+            </th>
+        </tr>
+
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.username)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.password)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td class="text-left">
+                    @if(item.status == true)
+                {
+                    <p>
+                        Admin
+                    </p> 
+                }
+                    @if(item.status == false)
+                {
+                    <p>
+                        Clinet
+                    </p>
+                }
+                </td>
+
+                <td class="text-left">
+                    <div class="filter__page-control">
+                        <a href="@Url.Action("Edit", "Accounts", new { id = item.id })" class="filter__page-btn  " style="text-decoration:none;">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class="page-icon fas fa-edit"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Accounts", new { id = item.id })" class="filter__page-btn " style="text-decoration:none;">
+                            @*<i class="page-icon fas fa-angle-right"></i>*@
+                            <i class="page-icon fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+
+        </tbody>
+    }
+</table>

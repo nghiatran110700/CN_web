@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Web.Models.Entity.bill>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Merger Bill</h2>
+ 
+<table class="table-fill">
+    <thead>
+        <tr>
+            <th class="text-left">Mã Đơn Hàng </th>
+            <th class="text-left">Phone </th>
+            <th class="text-left">Address</th>
+            <th class="text-left">Total</th>
+            <th class="text-left">Status</th>
+
+            <th class="text-left">
+
+            </th>
+        </tr>
+
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        <tbody class="table-hover">
+            <tr>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.idBill)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.phone)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.total_bill) vnđ
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+
+                <td class="text-left">
+                    <div class="filter__page-control">
+
+                        <a href="@Url.Action("Details", "BiLL", new { id = item.idBill })" class="filter__page-btn " style="text-decoration:none;">
+
+                            <i class=" page-icon fas fa-info-circle"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "BiLL", new { id = item.idBill })" class="filter__page-btn " style="text-decoration:none;">
+
+                            <i class="page-icon fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+
+        </tbody>
+    }
+    <tr>
+        <td colspan="5" style="text-align:right;">
+          Tổng Doanh Số: @Session["Doanh Thu"] vnđ
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,105 @@
+﻿@model Web.Models.Entity.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+<div class="container" style="       
+        border: 2px solid #004eff;
+        background-color: #f4f2f2;
+        margin: 0 auto 24px;
+">
+    <div class="image">
+        <img src="~/Access/Imge/@Model.photo" class="img-large" alt="">
+        <img src="~/Access/Imge/@Model.photo" class="img-small" alt="">
+    </div>
+    <div class="content">
+        <div class="name-product">
+            @Html.DisplayFor(model => model.nameProduct)
+        </div>
+        <div class="price">
+            <p class="name-price">Giá:</p>
+            @Html.DisplayFor(model => model.price)đ
+        </div>
+        <div class="description">
+            <p class="infor"> Thông Tin:</p>
+            <p class="content-description"> @Html.DisplayFor(model => model.description)</p>
+        </div>
+        <div class="description">
+            <p class="infor"> Số Lượng:</p>
+            <p class="amount">@Html.DisplayFor(model => model.amuont) Sản Phẩm</p>
+        </div>
+        <div class="description">
+            <p class="infor infor-cate"> Danh Mục:</p>
+            <p class="name-cate">@Html.DisplayFor(model => model.category.nameCategory)</p>
+        </div>
+        <div class="controll">
+            <a href="@Url.Action("Index","Admin")" class="link-edit" style="color:white;">Back</a>
+            <a href="@Url.Action("Edit","Admin" ,new { id = Model.idProduct})" class="link-edit" style="color:white;">Edit</a>
+        </div>
+
+
+    </div>
+</div>
+
+<!--<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.category.nameCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.nameCategory)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amuont)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amuont)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photo)
+        </dt>
+
+        <dd>-->
+            @*@Html.DisplayFor(model => model.photo)*@
+            <!--<img src="~/Access/Imge/@Model.photo" alt="Alternate Text" style="width:70px;;height:70px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+</div>-->
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idProduct }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
